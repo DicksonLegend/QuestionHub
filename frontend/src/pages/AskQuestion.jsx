@@ -8,7 +8,7 @@ function AskQuestion() {
   const [formData, setFormData] = useState({
     title: '',
     description: '',
-    subject: 'Math'
+    subject: 'Operating System'
   });
   const [image, setImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
@@ -103,11 +103,12 @@ function AskQuestion() {
             onChange={handleChange}
             required
           >
-            <option value="Math">Math</option>
-            <option value="Physics">Physics</option>
-            <option value="Chemistry">Chemistry</option>
-            <option value="Computer Science">Computer Science</option>
-            <option value="Other">Other</option>
+            <option value="Operating System">Operating System</option>
+            <option value="Data Mining and Warehousing">Data Mining and Warehousing</option>
+            <option value="Deep Learning">Deep Learning</option>
+            <option value="Bigdata Tools and Techniques">Bigdata Tools and Techniques</option>
+            <option value="Theory of Computation">Theory of Computation</option>
+            <option value="Fullstack Development">Fullstack Development</option>
           </select>
         </div>
 

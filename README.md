@@ -7,7 +7,7 @@ A simple anonymous doubt-solving platform for students built with React, Node.js
 - 🎭 Anonymous question posting with optional image upload
 - 💬 Anonymous answer submission with optional image upload
 - ⬆️ Upvote system for questions and answers
-- 📚 Subject/category filtering (Math, Physics, Chemistry, Computer Science, Other)
+- 📚 Subject/category filtering (Operating System, Data Mining and Warehousing, Deep Learning, Bigdata Tools and Techniques, Theory of Computation, Fullstack Development)
 - 🔄 Questions sorted by most recent
 - ⭐ Answers sorted by most upvotes
 

@@ -13,7 +13,7 @@ const questionSchema = new mongoose.Schema({
   subject: {
     type: String,
     required: true,
-    enum: ['Math', 'Physics', 'Chemistry', 'Computer Science', 'Other']
+    enum: ['Operating System', 'Data Mining and Warehousing', 'Deep Learning', 'Bigdata Tools and Techniques', 'Theory of Computation', 'Fullstack Development']
   },
   image: {
     type: String,

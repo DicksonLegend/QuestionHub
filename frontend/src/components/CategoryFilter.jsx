@@ -2,7 +2,7 @@ import React from 'react';
 import './CategoryFilter.css';
 
 function CategoryFilter({ selectedSubject, onSubjectChange }) {
-  const subjects = ['All', 'Math', 'Physics', 'Chemistry', 'Computer Science', 'Other'];
+  const subjects = ['All', 'Operating System', 'Data Mining and Warehousing', 'Deep Learning', 'Bigdata Tools and Techniques', 'Theory of Computation', 'Fullstack Development'];
 
   return (
     <div className="category-filter">
