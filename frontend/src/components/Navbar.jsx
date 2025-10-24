@@ -7,10 +7,10 @@ function Navbar() {
     <nav className="navbar">
       <div className="navbar-container">
         <Link to="/" className="navbar-logo">
-          📚 Doubt Solving Portal
+          QuestionHub
         </Link>
         <Link to="/ask" className="navbar-btn">
-          ➕ Ask Question
+          Ask Question
         </Link>
       </div>
     </nav>

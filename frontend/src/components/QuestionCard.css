@@ -1,67 +1,98 @@
 .question-card {
   background: white;
-  border-radius: 12px;
-  padding: 20px;
-  margin-bottom: 16px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.question-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
 .question-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-8px);
+  box-shadow: 0 8px 30px rgba(102, 126, 234, 0.2);
+  border-color: #667eea;
 }
 
 .question-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 
 .question-subject {
-  background-color: #3498db;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  padding: 4px 12px;
-  border-radius: 16px;
-  font-size: 14px;
-  font-weight: 500;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: 0 2px 10px rgba(102, 126, 234, 0.3);
 }
 
 .question-time {
-  color: #7f8c8d;
-  font-size: 14px;
+  color: #999;
+  font-size: 13px;
+  font-weight: 500;
 }
 
 .question-title {
-  font-size: 20px;
+  font-size: 22px;
   color: #2c3e50;
   margin-bottom: 12px;
   line-height: 1.4;
+  font-weight: 700;
 }
 
 .question-description {
-  color: #555;
-  line-height: 1.6;
-  margin-bottom: 12px;
+  color: #666;
+  line-height: 1.7;
+  margin-bottom: 14px;
+  font-size: 15px;
 }
 
 .question-has-image {
-  color: #7f8c8d;
+  color: #667eea;
   font-size: 14px;
   margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.question-has-image::before {
+  content: "📎 ";
 }
 
 .question-footer {
   display: flex;
   align-items: center;
-  padding-top: 12px;
-  border-top: 1px solid #ecf0f1;
+  padding-top: 14px;
+  border-top: 2px solid #f0f0f0;
 }
 
 .upvotes {
-  color: #27ae60;
-  font-weight: 500;
-  font-size: 14px;
+  color: #667eea;
+  font-weight: 700;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.upvotes::before {
+  content: "👍";
+  font-size: 16px;
 }

@@ -15,9 +15,19 @@ function QuestionDetail() {
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState(null);
+  const [hasUpvotedQuestion, setHasUpvotedQuestion] = useState(false);
+  const [upvotedAnswers, setUpvotedAnswers] = useState(new Set());
+  const [showImageModal, setShowImageModal] = useState(false);
 
   useEffect(() => {
     fetchQuestionAndAnswers();
+    // Check if user has already upvoted this question
+    const upvotedQuestions = JSON.parse(localStorage.getItem('upvotedQuestions') || '[]');
+    setHasUpvotedQuestion(upvotedQuestions.includes(id));
+    
+    // Check which answers user has upvoted
+    const upvotedAnswersData = JSON.parse(localStorage.getItem('upvotedAnswers') || '[]');
+    setUpvotedAnswers(new Set(upvotedAnswersData));
   }, [id]);
 
   const fetchQuestionAndAnswers = async () => {
@@ -39,22 +49,51 @@ function QuestionDetail() {
   };
 
   const handleUpvoteQuestion = async () => {
+    // Check if already upvoted
+    if (hasUpvotedQuestion) {
+      alert('You have already upvoted this question!');
+      return;
+    }
+
     try {
       const updatedQuestion = await upvoteQuestion(id);
       setQuestion(updatedQuestion);
+      setHasUpvotedQuestion(true);
+      
+      // Save to localStorage
+      const upvotedQuestions = JSON.parse(localStorage.getItem('upvotedQuestions') || '[]');
+      upvotedQuestions.push(id);
+      localStorage.setItem('upvotedQuestions', JSON.stringify(upvotedQuestions));
     } catch (err) {
       console.error('Failed to upvote question:', err);
+      alert('Failed to upvote. Please try again.');
     }
   };
 
   const handleUpvoteAnswer = async (answerId) => {
+    // Check if already upvoted
+    if (upvotedAnswers.has(answerId)) {
+      alert('You have already upvoted this answer!');
+      return;
+    }
+
     try {
       const updatedAnswer = await upvoteAnswer(answerId);
       setAnswers(answers.map(ans => 
         ans._id === answerId ? updatedAnswer : ans
       ));
+      
+      // Update local state
+      const newUpvotedAnswers = new Set(upvotedAnswers);
+      newUpvotedAnswers.add(answerId);
+      setUpvotedAnswers(newUpvotedAnswers);
+      
+      // Save to localStorage
+      const upvotedAnswersArray = Array.from(newUpvotedAnswers);
+      localStorage.setItem('upvotedAnswers', JSON.stringify(upvotedAnswersArray));
     } catch (err) {
       console.error('Failed to upvote answer:', err);
+      alert('Failed to upvote. Please try again.');
     }
   };
 
@@ -98,7 +137,14 @@ function QuestionDetail() {
 
   const formatDate = (date) => {
     const questionDate = new Date(date);
-    return questionDate.toLocaleString();
+    const options = { 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric', 
+      hour: '2-digit', 
+      minute: '2-digit' 
+    };
+    return questionDate.toLocaleString('en-US', options);
   };
 
   if (loading) return <div className="loading">Loading...</div>;
@@ -121,17 +167,40 @@ function QuestionDetail() {
         <p className="question-description">{question.description}</p>
         
         {question.image && (
-          <div className="question-image-container">
-            <img 
-              src={`http://localhost:5000/uploads/${question.image}`} 
-              alt="Question attachment" 
-              className="question-image"
-            />
-          </div>
+          <>
+            <div className="question-image-container" onClick={() => setShowImageModal(true)}>
+              <img 
+                src={`http://localhost:5000/uploads/${question.image}`} 
+                alt="Question attachment" 
+                className="question-image"
+              />
+              <div className="image-zoom-hint">🔍 Click to view full size</div>
+            </div>
+            
+            {showImageModal && (
+              <div className="image-modal" onClick={() => setShowImageModal(false)}>
+                <div className="image-modal-content">
+                  <button className="modal-close" onClick={() => setShowImageModal(false)}>
+                    ✕
+                  </button>
+                  <img 
+                    src={`http://localhost:5000/uploads/${question.image}`} 
+                    alt="Question attachment full size" 
+                    className="modal-image"
+                  />
+                  <p className="modal-hint">Click anywhere to close</p>
+                </div>
+              </div>
+            )}
+          </>
         )}
 
-        <button onClick={handleUpvoteQuestion} className="upvote-question-btn">
-          ⬆️ Upvote ({question.upvotes})
+        <button 
+          onClick={handleUpvoteQuestion} 
+          className={`upvote-question-btn ${hasUpvotedQuestion ? 'upvoted' : ''}`}
+          disabled={hasUpvotedQuestion}
+        >
+          ⬆️ {hasUpvotedQuestion ? 'Upvoted' : 'Upvote'} ({question.upvotes})
         </button>
       </div>
 
@@ -190,6 +259,7 @@ function QuestionDetail() {
                 key={answer._id} 
                 answer={answer} 
                 onUpvote={handleUpvoteAnswer}
+                hasUpvoted={upvotedAnswers.has(answer._id)}
               />
             ))
           )}
