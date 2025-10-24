@@ -1,0 +1,29 @@
+.category-filter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.category-filter label {
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.subject-select {
+  padding: 8px 16px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  background-color: white;
+  cursor: pointer;
+  font-size: 16px;
+  transition: border-color 0.2s;
+}
+
+.subject-select:hover {
+  border-color: #3498db;
+}
+
+.subject-select:focus {
+  outline: none;
+  border-color: #3498db;
+}

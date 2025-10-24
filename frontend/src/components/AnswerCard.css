@@ -1,0 +1,53 @@
+.answer-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.answer-header {
+  margin-bottom: 12px;
+}
+
+.answer-time {
+  color: #7f8c8d;
+  font-size: 14px;
+}
+
+.answer-text {
+  color: #2c3e50;
+  line-height: 1.6;
+  margin-bottom: 12px;
+  white-space: pre-wrap;
+}
+
+.answer-image-container {
+  margin: 16px 0;
+}
+
+.answer-image {
+  max-width: 100%;
+  max-height: 400px;
+  border-radius: 8px;
+  object-fit: contain;
+}
+
+.answer-footer {
+  display: flex;
+  align-items: center;
+  padding-top: 12px;
+  border-top: 1px solid #ecf0f1;
+}
+
+.upvote-btn {
+  background-color: #27ae60;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.upvote-btn:hover {
+  background-color: #229954;
+}
