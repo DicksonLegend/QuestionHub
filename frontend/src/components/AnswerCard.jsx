@@ -33,7 +33,7 @@ function AnswerCard({ answer, onUpvote, hasUpvoted }) {
         <>
           <div className="answer-image-container" onClick={() => setShowImageModal(true)}>
             <img 
-              src={`http://localhost:5000/uploads/${answer.image}`} 
+              src={`https://questionhub-backend-jjp2.onrender.com/uploads/${answer.image}`} 
               alt="Answer attachment" 
               className="answer-image"
             />
@@ -47,7 +47,7 @@ function AnswerCard({ answer, onUpvote, hasUpvoted }) {
                   ✕
                 </button>
                 <img 
-                  src={`http://localhost:5000/uploads/${answer.image}`} 
+                  src={`https://questionhub-backend-jjp2.onrender.com/uploads/${answer.image}`} 
                   alt="Answer attachment full size" 
                   className="modal-image"
                 />

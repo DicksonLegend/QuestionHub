@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://localhost:5000/api';
+const API_BASE_URL = 'https://questionhub-backend-jjp2.onrender.com/api';
 
 // Get all questions
 export const getQuestions = async (subject = '') => {

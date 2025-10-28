@@ -170,7 +170,7 @@ function QuestionDetail() {
           <>
             <div className="question-image-container" onClick={() => setShowImageModal(true)}>
               <img 
-                src={`http://localhost:5000/uploads/${question.image}`} 
+                src={`https://questionhub-backend-jjp2.onrender.com/uploads/${question.image}`} 
                 alt="Question attachment" 
                 className="question-image"
               />
@@ -184,7 +184,7 @@ function QuestionDetail() {
                     ✕
                   </button>
                   <img 
-                    src={`http://localhost:5000/uploads/${question.image}`} 
+                    src={`https://questionhub-backend-jjp2.onrender.com/uploads/${question.image}`} 
                     alt="Question attachment full size" 
                     className="modal-image"
                   />
